@@ -2,7 +2,7 @@ module Main exposing (main)
 
 import Browser
 import Html exposing (Html, button, div, p, text)
-
+import Html.Events exposing (onClick)
 
 
 -- MAIN
@@ -36,12 +36,14 @@ init _ =
 
 
 type Msg
-    = NoOp
+    = ChangeWord String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    ( model, Cmd.none )
+    case msg of
+        ChangeWord word ->
+            ( word, Cmd.none )
 
 
 
@@ -51,8 +53,8 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ button [] [ text "hello" ]
-        , button [] [ text "world" ]
+        [ button [ onClick (ChangeWord "Hello") ] [ text "hello" ]
+        , button [ onClick (ChangeWord "World") ] [ text "world" ]
         , p [] [ text model ]
         ]
 
