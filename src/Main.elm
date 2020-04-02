@@ -1,9 +1,7 @@
 module Main exposing (main)
 
 import Browser
-import Html exposing (Html, button, main_, p, text)
-import Html.Attributes exposing (class)
-import Html.Events exposing (onClick)
+import Html exposing (Html, button, div, p, text)
 
 
 
@@ -25,12 +23,12 @@ main =
 
 
 type alias Model =
-    Int
+    String
 
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( 0, Cmd.none )
+    ( "", Cmd.none )
 
 
 
@@ -38,18 +36,12 @@ init _ =
 
 
 type Msg
-    = Increment
-    | Decrement
+    = NoOp
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case msg of
-        Increment ->
-            ( model + 1, Cmd.none )
-
-        Decrement ->
-            ( model - 1, Cmd.none )
+    ( model, Cmd.none )
 
 
 
@@ -58,10 +50,10 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    main_ [ class "ly_cont" ]
-        [ button [ onClick Decrement ] [ text "-" ]
-        , p [] [ text <| String.fromInt model ]
-        , button [ onClick Increment ] [ text "+" ]
+    div []
+        [ button [] [ text "hello" ]
+        , button [] [ text "world" ]
+        , p [] [ text model ]
         ]
 
 
